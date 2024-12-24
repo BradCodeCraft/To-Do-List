@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Sign-Up Form</title>
+</head>
+
+<body>
+  <div class="left-container">
+    <div class="banner">
+      <img
+        src="https://cdn.statically.io/gh/TheOdinProject/curriculum/5f37d43908ef92499e95a9b90fc3cc291a95014c/html_css/project-sign-up-form/odin-lined.png"
+        height="100em">
+      <h1>ODIN</h1>
+    </div>
+
+    <figure>
+      <figcaption>Photo by Halie West on Unsplash</figcaption>
+    </figure>
+  </div>
+  <div class="right-container">
+    <section class="section-one">
+      <h2>This is not a real online service! You know you need something like this in your life to help you realize your
+        deepest dreams. Sign up <em>now</em> to get started.</h2>
+
+      <h2>You <em>know</em> you want to.</h2>
+    </section>
+
+    <section class="section-two">
+      <h2>Let's do this!</h2>
+
+      <form method="post" id="main-form" class="form" action="submit-form">
+        <div class="form-container">
+          <div class="form-left-column">
+            <span>
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Thor" required>
+            </span>
+            <span>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="ThorOdinson@asgard.com" required>
+            </span>
+            <span>
+              <label for="passwd">Password</label>
+              <input type="password" id="passwd" name="passwd" required>
+            </span>
+          </div>
+          <div class="form-right-column">
+            <span>
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Odinson" required>
+            </span>
+            <span>
+              <label for="tele">Phone Number</label>
+              <input type="tel" id="tele" name="tele" required>
+            </span>
+            <span>
+              <label for="passwd">Confirm Password</label>
+              <input type="password" id="passwd" name="passwd" required>
+            </span>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section-three">
+      <button form="main-form" type="submit">Create Account</button>
+      <p>Already have an account? <a href="log-in">Log in</a></p>
+    </section>
+  </div>
+</body>
+
+</html>

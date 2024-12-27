@@ -1,3 +1,7 @@
 require("./styles.css");
+const menu = require("./menu.js");
+const home = require("./home.js");
+let currentContent = home;
 
-console.log("Server started");
+const content = document.getElementById('content');
+content.append(currentContent);

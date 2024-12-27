@@ -3,7 +3,8 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+
+  min-height: 100vh;
 
   display: grid;
   grid-template-rows: 75px 1fr;
@@ -12,7 +13,8 @@ body {
   font-family: "Poppins", sans-serif;
   color: #FFFFFF;
 
-  background: linear-gradient(#0A0A0A, #3C3C3C)
+  background: linear-gradient(#0A0A0A, #3C3C3C);
+  background-repeat: no-repeat;
 }
 
 h1,
@@ -24,12 +26,134 @@ h6,
 p {
   margin: 0;
   padding: 0;
+
+  text-align: center;
 }
 
-h1 {
+header {
+  width: 50vw;
+  min-width: 700px;
+  height: 75px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+nav button {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #FD8200;
+  color: #FFFFFF;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav button:hover {
+  cursor: pointer;
+}
+
+nav button:active {
+  transform: scale(0.9);
+}
+
+/* NOTE: .content */
+
+
+/* NOTE: .home */
+.home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  gap: 20px;
+
+  width: 50vw;
+  min-width: 500px;
+}
+
+.home h1 {
+  font-size: 3rem;
+}
+
+.home-image {
+  width: 500px;
+  height: 310px;
+
+  object-fit: cover;
+}
+
+
+/* NOTE: .menu */
+.menu {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  width: 50vw;
+  min-width: 500px;
+  padding: 20px 10px;
+  margin: 20px 0;
+
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  background-color: #1E1E1E;
+}
+
+.menu h1 {
   font-size: 2.5rem;
 }
 
-p {
-  text-align: center;
+.appetizers,
+.main-course,
+.beverages {
+  width: 100%;
+}
+
+.image-container-left,
+.image-container-right {
+  width: 100%;
+
+  display: grid;
+
+  padding: 10px 10px;
+
+  background-color: #FD8200;
+}
+
+.image-container-right {
+  place-items: start;
+  border-radius: 200px 0 0 200px;
+}
+
+.image-container-left {
+  place-items: end;
+  border-radius: 0 200px 200px 0;
+}
+
+.menu img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
 }

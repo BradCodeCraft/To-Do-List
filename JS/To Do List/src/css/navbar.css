@@ -1,0 +1,40 @@
+@import "../styles.css";
+
+nav {
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--color-secondary);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+header {
+  display: grid;
+  grid-template-columns: 40px 1fr 25px 25px;
+  align-items: center;
+}
+
+.navbar-header-user-image {
+  padding: 1px;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  border: 2px solid var(--color-tertiary);
+
+  object-fit: cover;
+}
+
+.navbar-header-user-image:hover {
+  cursor: pointer;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-header-user-image:active {
+  transform: scale(0.9);
+}

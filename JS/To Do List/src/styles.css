@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
 :root {
-  --color-primary: #264653;
-  --color-secondary: #3F767D;
-  --color-tertiary: #E9C46A;
-  --color-quaternary: #F4A261;
-  --color-quinary: #E76F51;
+  --color-primary: #FFFFFF;
+  --color-secondary: #FCFAF8;
+  --color-tertiary: #B98D7B;
 
   --color-priority-one: #494CA2;
   --color-priority-two: #BC5080;
@@ -13,7 +11,7 @@
   --color-priority-four: #D2D462;
   --color-priority-five: #6F975C;
 
-  --color-text-primary: #FFFFFF;
+  --color-text-primary: #000000;
 }
 
 body {
@@ -43,71 +41,18 @@ p {
   padding: 0;
 }
 
-/* NOTE: .navbar */
-.navbar {
-  padding: 10px;
-
-  display: grid;
-  grid-template-rows: 40px 1fr;
-  gap: 15px;
-
-  background-color: var(--color-secondary);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-}
-
-.navbar header {
-  display: grid;
-  grid-template-columns: 40px 1fr 25px 25px;
-  align-items: center;
-  gap: 5px;
-}
-
-.navbar img {
-  width: 40px;
-  height: 40px;
+#icon {
   object-fit: cover;
 
-  border-radius: 50%;
+  filter: invert(50%) sepia(7%) saturate(93%) hue-rotate(71deg) brightness(86%) contrast(89%);
 }
 
-#icon {
-  width: 25px;
-  height: 25px;
-}
+#icon:hover {
+  filter: invert(750%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 
-#icon:hover,
-#avatar:hover,
-#nav-text:hover {
   cursor: pointer;
 }
 
-#icon:active,
-#avatar:active,
-#nav-text:active {
-  transform: scale(.85);
-}
-
-.main-nav {
-  display: grid;
-  grid-template-rows: 200px repeat(2, 150px);
-  gap: 25px;
-}
-
-.main-icons,
-.projects,
-.team {
-  display: grid;
-  grid-template-columns: 25px 1fr;
-  align-items: center;
-  gap: 5px;
-
-  padding-left: 7.5px;
-}
-
-.active {
-  filter: invert(86%) sepia(35%) saturate(100%) hue-rotate(113deg) brightness(104%) contrast(96%);
-}
-
-#nav-text {
-  width: fit-content;
+#icon:active {
+  transform: scale(0.9);
 }

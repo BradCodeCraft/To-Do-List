@@ -26,6 +26,7 @@ navbarExpandImage.src = navbarExpandSource;
 navbarHeader.append(navbarCompanyImage, navbarName, navbarNotificationImage, navbarExpandImage);
 
 const navbarMain = document.createElement("main");
+const navbarMainIcons = document.createElement("div");
 // Add Task
 const navbarAddContainer = document.createElement("div");
 navbarAddContainer.className = "navbar-main-icon-container add-task";
@@ -86,9 +87,15 @@ navbarFiltersImage.id = "icon";
 const navbarFiltersText = document.createElement("p");
 navbarFiltersText.textContent = "Filters";
 navbarFiltersContainer.append(navbarFiltersImage, navbarFiltersText);
+navbarMainIcons.append(navbarAddContainer, navbarSearchContainer, navbarInboxContainer, navbarTodayContainer, navbarUpcomingContainer, navbarFiltersContainer);
 
-navbarMain.append(navbarAddContainer, navbarSearchContainer, navbarInboxContainer, navbarTodayContainer, navbarUpcomingContainer, navbarFiltersContainer);
+const navbarMainProjects = document.createElement("div");
+const navbarMainProjectsTitle = document.createElement("p");
+navbarMainProjectsTitle.textContent = "Projects";
+const navbarMainProjectsList = document.createElement("ul");
+navbarMainProjects.append(navbarMainProjectsTitle, navbarMainProjectsList);
 
+navbarMain.append(navbarMainIcons, navbarMainProjects);
 
 
 /* ========== EVENTS ========== */

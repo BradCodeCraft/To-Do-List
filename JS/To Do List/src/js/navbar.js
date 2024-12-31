@@ -1,5 +1,8 @@
 /* ========== IMPORTS ========== */
 require("../css/navbar.css");
+let { currentTab, currentDate } = require("./GlobalVariables.js");
+
+console.log(currentTab);
 
 const navbar = document.createElement("nav");
 
@@ -27,6 +30,7 @@ navbarHeader.append(navbarCompanyImage, navbarName, navbarNotificationImage, nav
 
 const navbarMain = document.createElement("main");
 const navbarMainIcons = document.createElement("div");
+navbarMainIcons.className = "navbar-main-icons";
 // Add Task
 const navbarAddContainer = document.createElement("div");
 navbarAddContainer.className = "navbar-main-icon-container add-task";
@@ -51,9 +55,13 @@ navbarSearchContainer.append(navbarSearchImage, navbarSearchText);
 const navbarInboxContainer = document.createElement("div");
 navbarInboxContainer.className = "navbar-main-icon-container inbox";
 navbarInboxContainer.id = "navbar-icon-container";
+navbarInboxContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+navbarInboxContainer.style.borderRadius = "10px";
+navbarInboxContainer.style.color = "rgba(var(--color-text-secondary), 1)";
 const navbarInboxImage = document.createElement("img");
 navbarInboxImage.src = require("../assets/inbox.svg");
 navbarInboxImage.id = "icon";
+navbarInboxImage.style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
 const navbarInboxText = document.createElement("p");
 navbarInboxText.textContent = "Inbox";
 navbarInboxContainer.append(navbarInboxImage, navbarInboxText);
@@ -89,12 +97,24 @@ navbarFiltersText.textContent = "Filters";
 navbarFiltersContainer.append(navbarFiltersImage, navbarFiltersText);
 navbarMainIcons.append(navbarAddContainer, navbarSearchContainer, navbarInboxContainer, navbarTodayContainer, navbarUpcomingContainer, navbarFiltersContainer);
 
+console.log(navbarFiltersContainer.className.substring(navbarFiltersContainer.className.indexOf(" ") + 1));
+
 const navbarMainProjects = document.createElement("div");
+navbarMainProjects.className = "navbar-main-projects";
+const navbarMainProjectsTitleContainer = document.createElement("div");
+navbarMainProjectsTitleContainer.className = "navbar-main-projects-container title";
+navbarMainProjectsTitleContainer.id = "navbar-project-container";
+const navbarMainProjectsTitleImage = document.createElement("img");
+navbarMainProjectsTitleImage.src = require("../assets/bag-personal.svg");
+navbarMainProjectsTitleImage.id = "icon";
 const navbarMainProjectsTitle = document.createElement("p");
 navbarMainProjectsTitle.textContent = "Projects";
+navbarMainProjectsTitleContainer.append(navbarMainProjectsTitleImage, navbarMainProjectsTitle);
 const navbarMainProjectsList = document.createElement("ul");
-navbarMainProjects.append(navbarMainProjectsTitle, navbarMainProjectsList);
+navbarMainProjectsList.className = "navbar-main-projects-list";
 
+
+navbarMainProjects.append(navbarMainProjectsTitleContainer, navbarMainProjectsList);
 navbarMain.append(navbarMainIcons, navbarMainProjects);
 
 
@@ -112,6 +132,7 @@ navbarNotificationImage.addEventListener("click", () => {
     navbarNotificationImage.src = require("../assets/bell.svg");
   }
 });
+
 navbarExpandImage.addEventListener("click", () => {
   if (navbarExpandStatus == "expanded") {
     navbarExpandStatus = "collapsed";
@@ -136,6 +157,14 @@ navbarExpandImage.addEventListener("click", () => {
       element.children[1].style.display = "none";
     }
 
+    for (element of document.getElementsByClassName("navbar-main-projects-container")) {
+      element.style.display = "flex";
+      element.style.justifyContent = "center";
+      element.style.paddingLeft = "0px";
+      element.style.backgroundColor = "transparent";
+
+      element.children[1].style.display = "none";
+    }
   } else {
     navbarExpandStatus = "expanded";
     navbarExpandImage.src = require("../assets/arrow-expand-left.svg");
@@ -153,12 +182,198 @@ navbarExpandImage.addEventListener("click", () => {
       element.style.gridTemplateColumns = "36px 1fr";
       element.style.alignItems = "center";
       element.style.paddingLeft = "5px";
-      element.style.backgroundColor = "";
+      element.style.backgroundColor = currentTab == element.className.substring(element.className.indexOf(" ") + 1) ?
+        "rgba(var(--color-primary), 0.5)" :
+        "";
 
       element.children[1].style.display = "";
     }
 
+    for (element of document.getElementsByClassName("navbar-main-projects-container")) {
+      element.style.display = "grid";
+      element.style.justifyContent = "";
+      element.style.gridTemplateColumns = "36px 1fr";
+      element.style.alignItems = "center";
+      element.style.paddingLeft = "5px";
+      element.style.backgroundColor = "";
+
+      element.children[1].style.display = "";
+    }
   }
+});
+
+navbarAddContainer.addEventListener("click", () => {
+  currentTab = "add-task";
+
+  navbarAddContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+  navbarAddContainer.style.borderRadius = "10px";
+  navbarAddContainer.style.color = "rgba(var(--color-text-secondary), 1)";
+  navbarAddContainer.children[0].style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
+
+  navbarSearchContainer.style.backgroundColor = "";
+  navbarSearchContainer.style.color = "";
+  navbarSearchContainer.children[0].style.filter = "";
+
+  navbarInboxContainer.style.backgroundColor = "";
+  navbarInboxContainer.style.color = "";
+  navbarInboxContainer.children[0].style.filter = "";
+
+  navbarTodayContainer.style.backgroundColor = "";
+  navbarTodayContainer.style.color = "";
+  navbarTodayContainer.children[0].style.filter = "";
+
+  navbarUpcomingContainer.style.backgroundColor = "";
+  navbarUpcomingContainer.style.color = "";
+  navbarUpcomingContainer.children[0].style.filter = "";
+
+  navbarFiltersContainer.style.backgroundColor = "";
+  navbarFiltersContainer.style.color = "";
+  navbarFiltersContainer.children[0].style.filter = "";
+});
+
+navbarSearchContainer.addEventListener("click", () => {
+  currentTab = "search";
+
+  navbarSearchContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+  navbarSearchContainer.style.borderRadius = "10px";
+  navbarSearchContainer.style.color = "rgba(var(--color-text-secondary), 1)";
+  navbarSearchContainer.children[0].style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
+
+  navbarAddContainer.style.backgroundColor = "";
+  navbarAddContainer.style.color = "";
+  navbarAddContainer.children[0].style.filter = "";
+
+  navbarInboxContainer.style.backgroundColor = "";
+  navbarInboxContainer.style.color = "";
+  navbarInboxContainer.children[0].style.filter = "";
+
+  navbarTodayContainer.style.backgroundColor = "";
+  navbarTodayContainer.style.color = "";
+  navbarTodayContainer.children[0].style.filter = "";
+
+  navbarUpcomingContainer.style.backgroundColor = "";
+  navbarUpcomingContainer.style.color = "";
+  navbarUpcomingContainer.children[0].style.filter = "";
+
+  navbarFiltersContainer.style.backgroundColor = "";
+  navbarFiltersContainer.style.color = "";
+  navbarFiltersContainer.children[0].style.filter = "";
+});
+
+navbarInboxContainer.addEventListener("click", () => {
+  currentTab = "inbox";
+
+  navbarInboxContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+  navbarInboxContainer.style.borderRadius = "10px";
+  navbarInboxContainer.style.color = "rgba(var(--color-text-secondary), 1)";
+  navbarInboxContainer.children[0].style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
+
+  navbarAddContainer.style.backgroundColor = "";
+  navbarAddContainer.style.color = "";
+  navbarAddContainer.children[0].style.filter = "";
+
+  navbarSearchContainer.style.backgroundColor = "";
+  navbarSearchContainer.style.color = "";
+  navbarSearchContainer.children[0].style.filter = "";
+
+  navbarTodayContainer.style.backgroundColor = "";
+  navbarTodayContainer.style.color = "";
+  navbarTodayContainer.children[0].style.filter = "";
+
+  navbarUpcomingContainer.style.backgroundColor = "";
+  navbarUpcomingContainer.style.color = "";
+  navbarUpcomingContainer.children[0].style.filter = "";
+
+  navbarFiltersContainer.style.backgroundColor = "";
+  navbarFiltersContainer.style.color = "";
+  navbarFiltersContainer.children[0].style.filter = "";
+});
+
+navbarTodayContainer.addEventListener("click", () => {
+  currentTab = "today";
+
+  navbarTodayContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+  navbarTodayContainer.style.borderRadius = "10px";
+  navbarTodayContainer.style.color = "rgba(var(--color-text-secondary), 1)";
+  navbarTodayContainer.children[0].style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
+
+  navbarAddContainer.style.backgroundColor = "";
+  navbarAddContainer.style.color = "";
+  navbarAddContainer.children[0].style.filter = "";
+
+  navbarSearchContainer.style.backgroundColor = "";
+  navbarSearchContainer.style.color = "";
+  navbarSearchContainer.children[0].style.filter = "";
+
+  navbarInboxContainer.style.backgroundColor = "";
+  navbarInboxContainer.style.color = "";
+  navbarInboxContainer.children[0].style.filter = "";
+
+  navbarUpcomingContainer.style.backgroundColor = "";
+  navbarUpcomingContainer.style.color = "";
+  navbarUpcomingContainer.children[0].style.filter = "";
+
+  navbarFiltersContainer.style.backgroundColor = "";
+  navbarFiltersContainer.style.color = "";
+  navbarFiltersContainer.children[0].style.filter = "";
+});
+
+navbarUpcomingContainer.addEventListener("click", () => {
+  currentTab = "upcoming";
+
+  navbarUpcomingContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+  navbarUpcomingContainer.style.borderRadius = "10px";
+  navbarUpcomingContainer.style.color = "rgba(var(--color-text-secondary), 1)";
+  navbarUpcomingContainer.children[0].style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
+
+  navbarAddContainer.style.backgroundColor = "";
+  navbarAddContainer.style.color = "";
+  navbarAddContainer.children[0].style.filter = "";
+
+  navbarSearchContainer.style.backgroundColor = "";
+  navbarSearchContainer.style.color = "";
+  navbarSearchContainer.children[0].style.filter = "";
+
+  navbarInboxContainer.style.backgroundColor = "";
+  navbarInboxContainer.style.color = "";
+  navbarInboxContainer.children[0].style.filter = "";
+
+  navbarTodayContainer.style.backgroundColor = "";
+  navbarTodayContainer.style.color = "";
+  navbarTodayContainer.children[0].style.filter = "";
+
+  navbarFiltersContainer.style.backgroundColor = "";
+  navbarFiltersContainer.style.color = "";
+  navbarFiltersContainer.children[0].style.filter = "";
+});
+
+navbarFiltersContainer.addEventListener("click", () => {
+  currentTab = "filters";
+
+  navbarFiltersContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+  navbarFiltersContainer.style.borderRadius = "10px";
+  navbarFiltersContainer.style.color = "rgba(var(--color-text-secondary), 1)";
+  navbarFiltersContainer.children[0].style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
+
+  navbarAddContainer.style.backgroundColor = "";
+  navbarAddContainer.style.color = "";
+  navbarAddContainer.children[0].style.filter = "";
+
+  navbarSearchContainer.style.backgroundColor = "";
+  navbarSearchContainer.style.color = "";
+  navbarSearchContainer.children[0].style.filter = "";
+
+  navbarInboxContainer.style.backgroundColor = "";
+  navbarInboxContainer.style.color = "";
+  navbarInboxContainer.children[0].style.filter = "";
+
+  navbarTodayContainer.style.backgroundColor = "";
+  navbarTodayContainer.style.color = "";
+  navbarTodayContainer.children[0].style.filter = "";
+
+  navbarUpcomingContainer.style.backgroundColor = "";
+  navbarUpcomingContainer.style.color = "";
+  navbarUpcomingContainer.children[0].style.filter = "";
 });
 
 

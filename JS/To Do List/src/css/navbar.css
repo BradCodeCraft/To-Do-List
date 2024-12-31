@@ -9,6 +9,8 @@ nav {
   background-color: rgba(var(--color-secondary), 1);
 
   box-shadow: 0 0 10px rgba(var(--color-text-primary), .75);
+
+  cursor: default;
 }
 
 header {
@@ -41,7 +43,8 @@ header {
   transform: scale(0.9);
 }
 
-#navbar-icon-container {
+#navbar-icon-container,
+#navbar-project-container {
   display: grid;
   grid-template-columns: 36px 1fr;
   align-items: center;
@@ -49,17 +52,25 @@ header {
   padding-left: 5px;
 }
 
-#navbar-icon-container:hover {
+#navbar-icon-container:hover,
+#navbar-project-container:hover {
   cursor: pointer;
 
   background-color: rgba(var(--color-primary), 0.5);
+  border-radius: 10px;
   color: rgb(var(--color-text-secondary));
 }
 
-#navbar-icon-container:hover img {
+#navbar-icon-container:hover img,
+#navbar-project-container:hover img {
   filter: invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%);
 }
 
-#navbar-icon-container:active {
+#navbar-icon-container:active,
+#navbar-project-container:active {
   transform: scale(0.9);
+}
+
+.navbar-main-icons {
+  margin-bottom: 25px;
 }

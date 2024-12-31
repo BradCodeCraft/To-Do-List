@@ -3,7 +3,7 @@
 .task {
   background-color: rgb(var(--color-secondary));
 
-  max-width: 250px;
+  max-width: 200px;
 
   margin: 10px 0 15px 0;
   padding: 10px;
@@ -14,17 +14,20 @@
 }
 
 .task:hover {
-  box-shadow: 0 0 10px rgba(var(--color-text-primary), .75);
+  box-shadow: 0 0 10px rgba(var(--color-quaternary), .75);
 }
 
 .task-buttons {
-
   margin-top: 10px;
 
   display: flex;
   justify-content: space-between;
+}
 
-  z-index: 1;
+.task-description {
+  font-size: 0.9rem;
+
+  color: rgb(var(--color-text-tertiary));
 }
 
 .task-done-button {

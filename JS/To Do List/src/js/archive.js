@@ -1,18 +1,18 @@
-/* ========== IMPORTS ============ */
+/* ========== IMPORTS ========== */
 require("../css/task.css");
-let { getTodayTasks } = require("./backEnd.js");
+let { getArchiveTasks } = require("./backEnd.js");
 
 /* ========== ELEMENTS ========== */
-const todayPage = document.createElement("div");
-todayPage.className = "content";
-const todayHeader = document.createElement("h1");
-todayHeader.className = "content-header";
-todayHeader.textContent = "Today";
-const todayContent = document.createElement("div");
-todayContent.className = "today-content";
+const archive = document.createElement("div");
+archive.className = "content";
+const archiveHeader = document.createElement("h1");
+archiveHeader.className = "content-header";
+archiveHeader.textContent = "Archive";
+const archiveContent = document.createElement("div");
+archiveContent.className = "archive-content";
 
-let todayTasks = getTodayTasks();
-todayTasks.forEach((task) => {
+const archiveTasks = getArchiveTasks();
+archiveTasks.forEach((task) => {
   /* ========== ELEMENTS ========== */
   const taskElement = document.createElement("div");
   taskElement.className = "task";
@@ -29,31 +29,22 @@ todayTasks.forEach((task) => {
   taskPriority.style.color = `rgb(var(--color-priority-${task.priority}))`;
   const taskButtons = document.createElement("div");
   taskButtons.className = "task-buttons";
-  const taskDoneButton = document.createElement("button");
-  taskDoneButton.className = "task-done-button";
-  taskDoneButton.textContent = "Done";
+  const taskUndoneButton = document.createElement("button");
+  taskUndoneButton.className = "task-undone-button";
+  taskUndoneButton.textContent = "Undone?";
   const taskRemoveButton = document.createElement("button");
   taskRemoveButton.className = "task-remove-button";
   taskRemoveButton.textContent = "Remove";
-  taskButtons.append(taskDoneButton, taskRemoveButton);
+  taskButtons.append(taskUndoneButton, taskRemoveButton);
 
   /* ========== EVENTS ========== */
-  taskDoneButton.addEventListener("click", () => {
-    taskElement.remove();
-  })
-
-  taskRemoveButton.addEventListener("click", () => {
-    taskElement.remove();
-  })
 
   /* ========== APPEND ========== */
   taskElement.append(taskTitle, taskDescription, taskPriority, taskButtons);
-  todayContent.append(taskElement);
-})
+  archiveContent.append(taskElement);
+});
 
-/* ========== EVENTS ========== */
+/* ========== APPEND========== */
+archive.append(archiveHeader, archiveContent);
 
-/* ========== APPEND ========== */
-todayPage.append(todayHeader, todayContent);
-
-module.exports = todayPage;
+module.exports = archive;

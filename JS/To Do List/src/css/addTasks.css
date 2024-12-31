@@ -1,0 +1,37 @@
+.add-task-form {
+  margin-top: 10px;
+
+  display: grid;
+  gap: 5px;
+}
+
+.buttons {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-button {
+  padding: 5px;
+
+  background-color: rgba(var(--color-button-done), .5);
+  color: rgb(var(--color-text-primary));
+
+  border: none;
+  border-radius: 5px;
+
+  font-weight: bold;
+}
+
+.cancel-button {
+  padding: 5px;
+
+  background-color: rgba(var(--color-button-remove), .75);
+  color: rgb(var(--color-text-primary));
+
+  border: none;
+  border-radius: 5px;
+
+  font-weight: bold;
+}

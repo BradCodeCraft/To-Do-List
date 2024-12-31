@@ -4,6 +4,7 @@
   --color-primary: 50, 77, 110;
   --color-secondary: 88, 114, 145;
   --color-tertiary: 129, 212, 250;
+  --color-quaternary: 81, 229, 255;
 
   --color-priority-1: 73, 76, 162;
   --color-priority-2: 188, 80, 128;
@@ -13,6 +14,7 @@
 
   --color-text-primary: 255, 255, 255;
   --color-text-secondary: 240, 200, 8;
+  --color-text-tertiary: 175, 175, 175;
 
   --color-button-done: 0, 255, 0;
   --color-button-remove: 255, 0, 0;

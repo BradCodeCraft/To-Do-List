@@ -1,8 +1,17 @@
-/* ========== content ========== */
-const filters = document.createelement("div");
-filters.classname = "content-container";
-const filtersHeader = document.createelement("h1");
-filtersHeader.classname = "content-header";
-filtersHeader.textcontent = "filters";
-const filtersContent = document.createelement("div");
-filtersContent.classname = "today-content";
+/* ========== IMPORTS ========== */
+require("../css/task.css");
+
+/* ========== ELEMENTS ========== */
+const filtersPage = document.createElement("div");
+filtersPage.className = "content";
+const filtersHeader = document.createElement("h1");
+filtersHeader.className = "content-header";
+filtersHeader.textContent = "Filters";
+const filtersContent = document.createElement("div");
+filtersContent.className = "filters-content";
+
+/* ========== APPENDS ========== */
+filtersPage.append(filtersHeader, filtersContent);
+
+/* ========== EXPORT ========== */
+module.exports = filtersPage;

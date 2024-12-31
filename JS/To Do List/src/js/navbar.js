@@ -1,12 +1,10 @@
 /* ========== IMPORTS ========== */
 require("../css/navbar.css");
-let { currentTab, currentDate } = require("./GlobalVariables.js");
-
-console.log(currentTab);
-
-const navbar = document.createElement("nav");
+let { currentTab, setCurrentTab } = require("./GlobalVariables.js");
 
 /* ========== COMPONENTS ========== */
+const navbar = document.createElement("nav");
+
 const navbarHeader = document.createElement("header");
 const navbarCompanyImage = document.createElement("img");
 navbarCompanyImage.classList.add("navbar-header-user-image");
@@ -55,13 +53,9 @@ navbarSearchContainer.append(navbarSearchImage, navbarSearchText);
 const navbarInboxContainer = document.createElement("div");
 navbarInboxContainer.className = "navbar-main-icon-container inbox";
 navbarInboxContainer.id = "navbar-icon-container";
-navbarInboxContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
-navbarInboxContainer.style.borderRadius = "10px";
-navbarInboxContainer.style.color = "rgba(var(--color-text-secondary), 1)";
 const navbarInboxImage = document.createElement("img");
 navbarInboxImage.src = require("../assets/inbox.svg");
 navbarInboxImage.id = "icon";
-navbarInboxImage.style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
 const navbarInboxText = document.createElement("p");
 navbarInboxText.textContent = "Inbox";
 navbarInboxContainer.append(navbarInboxImage, navbarInboxText);
@@ -69,9 +63,13 @@ navbarInboxContainer.append(navbarInboxImage, navbarInboxText);
 const navbarTodayContainer = document.createElement("div");
 navbarTodayContainer.className = "navbar-main-icon-container today";
 navbarTodayContainer.id = "navbar-icon-container";
+navbarTodayContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
+navbarTodayContainer.style.borderRadius = "10px";
+navbarTodayContainer.style.color = "rgba(var(--color-text-secondary), 1)";
 const navbarTodayImage = document.createElement("img");
 navbarTodayImage.src = require("../assets/calendar-today.svg");
 navbarTodayImage.id = "icon";
+navbarTodayImage.style.filter = "invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%)";
 const navbarTodayText = document.createElement("p");
 navbarTodayText.textContent = "Today";
 navbarTodayContainer.append(navbarTodayImage, navbarTodayText);
@@ -97,25 +95,7 @@ navbarFiltersText.textContent = "Filters";
 navbarFiltersContainer.append(navbarFiltersImage, navbarFiltersText);
 navbarMainIcons.append(navbarAddContainer, navbarSearchContainer, navbarInboxContainer, navbarTodayContainer, navbarUpcomingContainer, navbarFiltersContainer);
 
-console.log(navbarFiltersContainer.className.substring(navbarFiltersContainer.className.indexOf(" ") + 1));
-
-const navbarMainProjects = document.createElement("div");
-navbarMainProjects.className = "navbar-main-projects";
-const navbarMainProjectsTitleContainer = document.createElement("div");
-navbarMainProjectsTitleContainer.className = "navbar-main-projects-container title";
-navbarMainProjectsTitleContainer.id = "navbar-project-container";
-const navbarMainProjectsTitleImage = document.createElement("img");
-navbarMainProjectsTitleImage.src = require("../assets/bag-personal.svg");
-navbarMainProjectsTitleImage.id = "icon";
-const navbarMainProjectsTitle = document.createElement("p");
-navbarMainProjectsTitle.textContent = "Projects";
-navbarMainProjectsTitleContainer.append(navbarMainProjectsTitleImage, navbarMainProjectsTitle);
-const navbarMainProjectsList = document.createElement("ul");
-navbarMainProjectsList.className = "navbar-main-projects-list";
-
-
-navbarMainProjects.append(navbarMainProjectsTitleContainer, navbarMainProjectsList);
-navbarMain.append(navbarMainIcons, navbarMainProjects);
+navbarMain.append(navbarMainIcons);
 
 
 /* ========== EVENTS ========== */
@@ -156,15 +136,6 @@ navbarExpandImage.addEventListener("click", () => {
 
       element.children[1].style.display = "none";
     }
-
-    for (element of document.getElementsByClassName("navbar-main-projects-container")) {
-      element.style.display = "flex";
-      element.style.justifyContent = "center";
-      element.style.paddingLeft = "0px";
-      element.style.backgroundColor = "transparent";
-
-      element.children[1].style.display = "none";
-    }
   } else {
     navbarExpandStatus = "expanded";
     navbarExpandImage.src = require("../assets/arrow-expand-left.svg");
@@ -188,22 +159,11 @@ navbarExpandImage.addEventListener("click", () => {
 
       element.children[1].style.display = "";
     }
-
-    for (element of document.getElementsByClassName("navbar-main-projects-container")) {
-      element.style.display = "grid";
-      element.style.justifyContent = "";
-      element.style.gridTemplateColumns = "36px 1fr";
-      element.style.alignItems = "center";
-      element.style.paddingLeft = "5px";
-      element.style.backgroundColor = "";
-
-      element.children[1].style.display = "";
-    }
   }
 });
 
 navbarAddContainer.addEventListener("click", () => {
-  currentTab = "add-task";
+  setCurrentTab("addTask");
 
   navbarAddContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
   navbarAddContainer.style.borderRadius = "10px";
@@ -232,7 +192,7 @@ navbarAddContainer.addEventListener("click", () => {
 });
 
 navbarSearchContainer.addEventListener("click", () => {
-  currentTab = "search";
+  setCurrentTab("search");
 
   navbarSearchContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
   navbarSearchContainer.style.borderRadius = "10px";
@@ -261,7 +221,7 @@ navbarSearchContainer.addEventListener("click", () => {
 });
 
 navbarInboxContainer.addEventListener("click", () => {
-  currentTab = "inbox";
+  setCurrentTab("inbox");
 
   navbarInboxContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
   navbarInboxContainer.style.borderRadius = "10px";
@@ -290,7 +250,7 @@ navbarInboxContainer.addEventListener("click", () => {
 });
 
 navbarTodayContainer.addEventListener("click", () => {
-  currentTab = "today";
+  setCurrentTab("today");
 
   navbarTodayContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
   navbarTodayContainer.style.borderRadius = "10px";
@@ -319,7 +279,7 @@ navbarTodayContainer.addEventListener("click", () => {
 });
 
 navbarUpcomingContainer.addEventListener("click", () => {
-  currentTab = "upcoming";
+  setCurrentTab("upcoming");
 
   navbarUpcomingContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
   navbarUpcomingContainer.style.borderRadius = "10px";
@@ -348,7 +308,7 @@ navbarUpcomingContainer.addEventListener("click", () => {
 });
 
 navbarFiltersContainer.addEventListener("click", () => {
-  currentTab = "filters";
+  setCurrentTab("filters");
 
   navbarFiltersContainer.style.backgroundColor = "rgba(var(--color-primary), 0.5)";
   navbarFiltersContainer.style.borderRadius = "10px";

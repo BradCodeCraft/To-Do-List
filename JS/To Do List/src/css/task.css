@@ -1,0 +1,62 @@
+@import "../styles.css";
+
+.task {
+  background-color: rgb(var(--color-secondary));
+
+  max-width: 250px;
+
+  margin: 10px 0 15px 0;
+  padding: 10px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.task:hover {
+  box-shadow: 0 0 10px rgba(var(--color-text-primary), .75);
+}
+
+.task-buttons {
+
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+
+  z-index: 1;
+}
+
+.task-done-button {
+  padding: 5px;
+
+  background-color: rgba(var(--color-button-done), .75);
+  color: rgb(var(--color-text-primary));
+
+  border: none;
+  border-radius: 5px;
+
+  font-weight: bold;
+}
+
+.task-remove-button {
+  padding: 5px;
+
+  background-color: rgba(var(--color-button-remove), .75);
+  color: rgb(var(--color-text-primary));
+
+  border: none;
+  border-radius: 5px;
+
+  font-weight: bold;
+}
+
+.task-done-button:hover,
+.task-remove-button:hover {
+  cursor: pointer;
+}
+
+.task-done-button:active,
+.task-remove-button:active {
+  transform: scale(0.9);
+}

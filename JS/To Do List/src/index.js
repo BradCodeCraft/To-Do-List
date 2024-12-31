@@ -1,6 +1,7 @@
 /* ========== IMPORTS ========== */
 require("./styles.css");
-const navbar = require("./js/navbar");
+const navbar = require("./js/navbar.js");
+const today = require("./js/today.js");
 
-
-document.body.append(navbar);
+/* ========== BODY ========== */
+document.body.append(navbar, today);

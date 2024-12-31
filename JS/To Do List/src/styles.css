@@ -5,14 +5,17 @@
   --color-secondary: 88, 114, 145;
   --color-tertiary: 129, 212, 250;
 
-  --color-priority-one: 73, 76, 162;
-  --color-priority-two: 188, 80, 128;
-  --color-priority-three: 255, 99, 99;
-  --color-priority-four: 210, 212, 98;
-  --color-priority-five: 111, 151, 92;
+  --color-priority-1: 73, 76, 162;
+  --color-priority-2: 188, 80, 128;
+  --color-priority-3: 255, 99, 99;
+  --color-priority-4: 210, 212, 98;
+  --color-priority-5: 111, 151, 92;
 
   --color-text-primary: 255, 255, 255;
   --color-text-secondary: 240, 200, 8;
+
+  --color-button-done: 0, 255, 0;
+  --color-button-remove: 255, 0, 0;
 }
 
 body {
@@ -59,4 +62,8 @@ p {
 
 #icon:active {
   transform: scale(0.9);
+}
+
+.content {
+  padding: 10px 50px;
 }

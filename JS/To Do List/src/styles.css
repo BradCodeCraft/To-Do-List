@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
 :root {
-  --color-primary: #FFFFFF;
-  --color-secondary: #FCFAF8;
-  --color-tertiary: #B98D7B;
+  --color-primary: 50, 77, 110;
+  --color-secondary: 88, 114, 145;
+  --color-tertiary: 129, 212, 250;
 
   --color-priority-one: #494CA2;
   --color-priority-two: #BC5080;
@@ -11,7 +11,8 @@
   --color-priority-four: #D2D462;
   --color-priority-five: #6F975C;
 
-  --color-text-primary: #000000;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #F0C808;
 }
 
 body {
@@ -25,7 +26,7 @@ body {
 
   font-family: 'DynaPuff';
 
-  background-color: var(--color-primary);
+  background-color: rgb(var(--color-primary), 1);
 
   color: var(--color-text-primary);
 }
@@ -42,13 +43,16 @@ p {
 }
 
 #icon {
+  width: 25px;
+  height: 25px;
+
   object-fit: cover;
 
-  filter: invert(50%) sepia(7%) saturate(93%) hue-rotate(71deg) brightness(86%) contrast(89%);
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(76deg) brightness(105%) contrast(101%);
 }
 
 #icon:hover {
-  filter: invert(750%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  filter: invert(77%) sepia(74%) saturate(530%) hue-rotate(356deg) brightness(91%) contrast(107%);
 
   cursor: pointer;
 }

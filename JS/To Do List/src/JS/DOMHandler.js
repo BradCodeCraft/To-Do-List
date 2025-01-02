@@ -24,6 +24,14 @@ navbarControls.forEach((div) => {
           }
         }
       }
+
+      for (child of document.querySelector(".main-top").children) {
+        if (child.id === div.id) {
+          child.className = "main-controls selected";
+        } else {
+          child.className = "main-controls";
+        }
+      }
     })
   }
 });
@@ -46,6 +54,7 @@ addTaskFormCancelButton.addEventListener("click", () => {
 const editTaskFormCancelButton = document.querySelector(".edit-task>form>.buttons>.cancel-task-button");
 editTaskFormCancelButton.addEventListener("click", () => {
   const editTaskForm = document.querySelector(".edit-task>form");
+  editTaskForm.accessKey = "";
   editTaskForm.reset();
 
   const editTaskPage = document.querySelector(".edit-task");

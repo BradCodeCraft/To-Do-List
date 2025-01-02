@@ -37,5 +37,11 @@ export const TaskHandler = {
     this.todoList = this.todoList.filter((task) => task.id !== taskId);
     this.setToDoList();
     this.getToDoList();
+  },
+  updateTask: function(task) {
+    this.todoList[task.id - 1] = task;
+    console.log(this.todoList);
+    this.setToDoList();
+    this.getToDoList();
   }
 }

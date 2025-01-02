@@ -21,7 +21,7 @@
       <main>
         <hr>
         <div class="main-top">
-          <div class="main-controls">
+          <div class="main-controls selected">
             <img src="assets/home.svg" alt="Home" width="25" height="25" class="icon">
             <h2>Home</h2>
           </div>
@@ -59,8 +59,128 @@
         </div>
       </main>
     </nav>
-    <div class="content"></div>
-    <div class="add-task">
+
+    <div class="content">
+      <div class="home-page hidden">
+        <header>
+          <h1>Welcome</h1>
+        </header>
+
+        <main class="content-main">
+          <div class="content-list">
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="today-page">
+        <header>
+          <h1>Dued Today</h1>
+        </header>
+
+        <main class="content-main">
+          <div class="content-list">
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </div>
+    <div class="add-task invisible">
       <form action="">
         <h1>Add a new task</h1>
 
@@ -80,9 +200,11 @@
           <h3>Priority</h3>
         </label>
         <select name="taskPriority" id="taskPriority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          <option value=1>1</option>
+          <option value=2>2</option>
+          <option value=3>3</option>
+          <option value=4>4</option>
+          <option value=5>5</option>
         </select>
         <div class="buttons">
           <button type="button" class="cancel-task-button">Cancel</button>

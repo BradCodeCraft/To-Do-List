@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
+/* === COMMON === */
 :root {
   --color-primary: 50, 77, 110;
   --color-secondary: 88, 114, 145;
@@ -7,11 +8,18 @@
   --color-quaternary: 240, 200, 8;
   --color-quinary: 255, 255, 255;
 
+  --color-priority-1: 255, 0, 0;
+  --color-priority-2: 255, 255, 0;
+  --color-priority-3: 0, 255, 0;
+  --color-priority-4: 0, 255, 255;
+  --color-priority-5: 0, 0, 255;
+
   --color-text-primary: 255, 255, 255;
   --color-text-secondary: 240, 200, 8;
 
   --color-button-add: 0, 255, 0;
   --color-button-cancel: 255, 0, 0;
+  --color-button-edit: 108, 117, 125;
 }
 
 body {
@@ -21,6 +29,8 @@ body {
   background-color: rgb(var(--color-primary));
   color: rgb(var(--color-text-primary));
   font-family: 'DynaPuff', sans-serif;
+
+  height: 100vh;
 }
 
 h1,
@@ -46,13 +56,39 @@ p {
   transform: scale(0.9);
 }
 
+hr {
+  margin: 10px 0;
+  border: 1px solid rgba(var(--color-tertiary), .5);
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.selected {
+  background-color: rgba(var(--color-primary), .5);
+  color: rgb(var(--color-text-secondary));
+  border-radius: 20px;
+  cursor: default;
+}
+
+.selected img {
+  filter: invert(92%) sepia(22%) saturate(1880%) hue-rotate(344deg) brightness(91%) contrast(107%);
+}
+
+/* === APP === */
 .app {
   display: grid;
   grid-template-columns: minmax(250px, 1fr) 10fr;
 
-  min-height: 100vh;
+  height: 100vh;
 }
 
+/* === NAV === */
 nav {
   padding: 10px;
 
@@ -92,6 +128,7 @@ nav>header>h1 {
 
   display: flex;
   flex-direction: column;
+  gap: 2.5px;
 }
 
 .main-controls {
@@ -117,11 +154,6 @@ nav>header>h1 {
 
 .main-controls:active {
   transform: scale(0.9);
-}
-
-hr {
-  margin: 10px 0;
-  border: 1px solid rgba(var(--color-tertiary), .5);
 }
 
 .main-mid>h1 {
@@ -160,4 +192,144 @@ hr {
 
 .main-mid>ul>li:active {
   transform: scale(0.9);
+}
+
+/* === FORM === */
+.add-task {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.add-task>form {
+  padding: 20px 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 50px);
+  gap: 20px;
+
+  width: 500px;
+  height: 400px;
+
+  background-color: rgb(var(--color-secondary));
+  border-radius: 20px;
+
+  box-shadow: 0 0 10px 0 rgba(var(--color-secondary), .5);
+}
+
+.add-task>form>h1 {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.buttons {
+  width: 100%;
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-task-button,
+.cancel-task-button,
+.edit-task-button,
+.delete-task-button {
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 20px;
+
+  color: rgb(var(--color-text-primary));
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.add-task-button:active,
+.cancel-task-button:active,
+.edit-task-button:active,
+.delete-task-button:active {
+  transform: scale(0.9);
+}
+
+.add-task-button {
+  background-color: rgba(var(--color-button-add), 0.5);
+}
+
+
+.add-task-button:hover {
+  box-shadow: 0 0 5px 0 rgba(var(--color-button-add), 0.5);
+}
+
+.cancel-task-button,
+.delete-task-button {
+  background-color: rgba(var(--color-button-cancel), 0.75);
+}
+
+.cancel-task-button:hover,
+.delete-task-button:hover {
+  box-shadow: 0 0 5px 0 rgba(var(--color-button-cancel), 0.5);
+}
+
+/* === CONTENT === */
+.content {
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.content h1 {
+  font-size: 3rem;
+}
+
+.content-main {
+  margin-top: 25px;
+
+  height: 80vh;
+
+  overflow-y: auto;
+}
+
+.content-list {
+  margin: 0;
+  padding: 0;
+
+}
+
+.content-list-item-card {
+  padding: 10px 20px;
+  margin-bottom: 15px;
+
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-columns: 50px 3fr 1fr 1fr 1fr;
+  align-items: center;
+
+  background-color: rgba(var(--color-secondary), .25);
+  border-left: 3px solid rgb(var(--color-priority-5));
+}
+
+.content-list-item-card-buttons {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-task-button {
+  background-color: rgba(var(--color-button-edit), .55);
+}
+
+.edit-task-button:hover {
+  box-shadow: 0 0 5px 0 rgba(var(--color-button-edit), .5);
 }

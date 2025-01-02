@@ -1,5 +1,8 @@
 export const TaskHandler = {
   todoList: [],
+  todayToDoList: [],
+  upcomingToDoList: [],
+  archiveToDoList: [],
   getToDoList: function() {
     let storage;
 
@@ -43,5 +46,39 @@ export const TaskHandler = {
     console.log(this.todoList);
     this.setToDoList();
     this.getToDoList();
-  }
+  },
+  getTodayToDoList: function() {
+    const today = new Date();
+    const todayDay = today.getDate().toString().length === 1 ?
+      "0" + today.getDate().toString() :
+      today.getDate();
+    const todayMonth = (today.getMonth() + 1).toString().length === 1 ?
+      "0" + (today.getMonth() + 1) :
+      (today.getMonth() + 1).toString();
+
+
+    this.todayToDoList = this.todoList.filter((task) => {
+      return task.dueDate.year === today.getFullYear().toString() &&
+        task.dueDate.month === todayMonth &&
+        task.dueDate.day === todayDay;
+    })
+  },
+  getUpcomingToDoList: function() {
+    const today = new Date();
+    const todayDay = today.getDate().toString().length === 1 ?
+      "0" + today.getDate().toString() :
+      today.getDate();
+    const todayMonth = (today.getMonth() + 1).toString().length === 1 ?
+      "0" + (today.getMonth() + 1) :
+      (today.getMonth() + 1).toString();
+
+    this.upcomingToDoList = this.todoList.filter((task) => {
+      return task.dueDate.year >= today.getFullYear().toString() &&
+        task.dueDate.month >= todayMonth &&
+        task.dueDate.day > todayDay;
+    });
+  },
+  getArchiveToDoList: function() {
+    this.archiveToDoList = this.todoList.filter((task) => task.status === "Completed");
+  },
 }

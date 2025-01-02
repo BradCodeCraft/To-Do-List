@@ -219,12 +219,15 @@ nav>header>h1 {
   gap: 20px;
 
   width: 500px;
-  height: 475px;
 
   background-color: rgb(var(--color-secondary));
   border-radius: 20px;
 
   box-shadow: 0 0 10px 0 rgba(var(--color-secondary), .5);
+}
+
+.add-task>form {
+  height: 475px;
 }
 
 .add-task>form>h1,
@@ -326,7 +329,7 @@ nav>header>h1 {
 
 
   display: grid;
-  grid-template-columns: 50px 3fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr;
   align-items: center;
 
   background-color: rgba(var(--color-secondary), .25);
@@ -339,10 +342,19 @@ nav>header>h1 {
   justify-content: space-around;
 }
 
+.edit-task>form {
+  height: 525px;
+}
+
 .edit-task-button {
   background-color: rgba(var(--color-button-edit), .55);
 }
 
 .edit-task-button:hover {
   box-shadow: 0 0 5px 0 rgba(var(--color-button-edit), .5);
+}
+
+.completed {
+  text-decoration: line-through;
+  color: rgba(var(--color-tertiary), .75);
 }

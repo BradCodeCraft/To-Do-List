@@ -3,47 +3,17 @@ import "./JS/DOMHandler.js";
 import { TaskHandler } from "./JS/TaskHandler.js";
 import { Functions } from "./JS/Functions.js";
 
+/* ========== GET TASKS ========== */
 TaskHandler.getToDoList();
-console.log(TaskHandler.todoList);
+TaskHandler.getTodayToDoList();
+TaskHandler.getUpcomingToDoList();
+TaskHandler.getArchiveToDoList();
 
-const taskList = document.querySelector(".content>.active>main>.content-list");
-TaskHandler.todoList.forEach((task) => {
-  const taskElement = document.createElement("div");
-  taskElement.className = "content-list-item-card";
-  taskElement.accessKey = task.id;
-  taskElement.innerHTML = `
-    <input id="taskStatus" name="taskStatus" type="checkbox" class="content-list-item-card-checkbox" ${task.status === "done" ? checked : ""}>
-    <h2>Title: ${task.title}</h2>
-    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
-    <div class="content-list-item-card-buttons">
-      <button class="edit-task-button">Edit</button>
-      <button class="delete-task-button">Delete</button>
-    </div>  
-  `;
-
-  taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
-    const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
-    const editTaskPage = document.querySelector(".edit-task");
-    editTaskPage.className = "edit-task";
-
-    const editTaskForm = document.querySelector(".edit-task>form");
-    editTaskForm.accessKey = task.id;
-    editTaskForm[0].value = task.title;
-    editTaskForm[1].value = task.description;
-    editTaskForm[2].value = task.project;
-    editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
-    editTaskForm[4].value = task.priority;
-  });
-
-  taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
-    TaskHandler.deleteTask(Number(taskElement.accessKey));
-    taskElement.remove();
-  });
-
-  taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
-
-  taskList.appendChild(taskElement);
-});
+/* ========== UPDATE DISPLAYS ========== */
+Functions.updateDisplay(TaskHandler.todoList);
+Functions.updateTodayDisplay(TaskHandler.todayToDoList);
+Functions.updateUpcomingDisplay(TaskHandler.upcomingToDoList);
+Functions.updateArchiveDisplay(TaskHandler.archiveToDoList);
 
 const addTaskForm = document.querySelector(".add-task>form");
 addTaskForm.addEventListener("submit", (e) => {
@@ -60,44 +30,41 @@ addTaskForm.addEventListener("submit", (e) => {
       day: e.target[3].value.split("-")[2],
     },
     priority: e.target[4].value,
-    status: "pending"
+    status: "Not Started"
   }
 
   TaskHandler.addTask(task);
 
   // Update the DOM
-  const taskList = document.querySelector(".content>.active>main>.content-list");
-  const taskElement = document.createElement("div");
-  taskElement.className = "content-list-item-card";
-  taskElement.accessKey = task.id;
-  taskElement.innerHTML = `
-    <input type="checkbox" class="content-list-item-card-checkbox">
-    <h2>Title: ${task.title}</h2>
-    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
-    <div class="content-list-item-card-buttons">
-      <button class="edit-task-button">Edit</button>
-      <button class="delete-task-button">Delete</button>
-    </div>  
-  `;
-  taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
-  taskList.appendChild(taskElement);
-  taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
-    const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
-    const editTaskPage = document.querySelector(".edit-task");
-    editTaskPage.className = "edit-task";
+  const navbarControls = document.querySelector(".main-top");
+  for (child of navbarControls.children) {
+    if (child.id === "home") {
+      child.className = "main-controls selected";
+    } else {
+      child.className = "main-controls";
+    }
+  }
 
-    const editTaskForm = document.querySelector(".edit-task>form");
-    editTaskForm.accessKey = task.id;
-    editTaskForm[0].value = task.title;
-    editTaskForm[1].value = task.description;
-    editTaskForm[2].value = task.project;
-    editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
-    editTaskForm[4].value = task.priority;
-  });
-  taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
-    TaskHandler.deleteTask(Number(taskElement.accessKey));
-    taskElement.remove();
-  });
+  const contentDiv = document.querySelector(".content");
+  for (child of contentDiv.children) {
+    if (!child.classList.contains("home-page")) {
+      child.style.display = "none";
+      child.className = `${child.className.split(" ")[0]} hidden`;
+    } else {
+      child.style.display = "block";
+      child.className = "home-page active";
+    }
+  }
+  /* ========== GET TASKS ========== */
+  TaskHandler.getToDoList();
+  TaskHandler.getTodayToDoList();
+  TaskHandler.getUpcomingToDoList();
+  TaskHandler.getArchiveToDoList();
+  /* ========== UPDATE DISPLAYS ========== */
+  Functions.updateDisplay(TaskHandler.todoList);
+  Functions.updateTodayDisplay(TaskHandler.todayToDoList);
+  Functions.updateUpcomingDisplay(TaskHandler.upcomingToDoList);
+  Functions.updateArchiveDisplay(TaskHandler.archiveToDoList);
 
   addTaskForm.reset();
   const addTaskDueDateInput = document.querySelector(".add-task>form>#taskDueDate");
@@ -122,63 +89,44 @@ editTaskForm.addEventListener("submit", (e) => {
       day: e.target[3].value.split("-")[2],
     },
     priority: e.target[4].value,
-    status: "pending"
+    status: e.target[5].value
   }
 
   TaskHandler.updateTask(task);
-
-  // Update the DOM
-  const taskList = document.querySelector(".content>.active>main>.content-list");
-  taskList.innerHTML = "";
-  TaskHandler.todoList.forEach((task) => {
-    const taskElement = document.createElement("div");
-    taskElement.className = "content-list-item-card";
-    taskElement.accessKey = task.id;
-    taskElement.innerHTML = `
-    <input type="checkbox" class="content-list-item-card-checkbox">
-    <h2>Title: ${task.title}</h2>
-    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
-    <div class="content-list-item-card-buttons">
-      <button class="edit-task-button">Edit</button>
-      <button class="delete-task-button">Delete</button>
-    </div>  
-  `;
-    taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
-      const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
-      const editTaskPage = document.querySelector(".edit-task");
-      editTaskPage.className = "edit-task";
-
-      const editTaskForm = document.querySelector(".edit-task>form");
-      editTaskForm.accessKey = task.id;
-      editTaskForm[0].value = task.title;
-      editTaskForm[1].value = task.description;
-      editTaskForm[2].value = task.project;
-      editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
-      editTaskForm[4].value = task.priority;
-    });
-    taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
-      const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
-      const editTaskPage = document.querySelector(".edit-task");
-      editTaskPage.className = "edit-task";
-
-      const editTaskForm = document.querySelector(".edit-task>form");
-      editTaskForm.accessKey = task.id;
-      editTaskForm[0].value = task.title;
-      editTaskForm[1].value = task.description;
-      editTaskForm[2].value = task.project;
-      editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
-      editTaskForm[4].value = task.priority;
-    });
-    taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
-      TaskHandler.deleteTask(Number(taskElement.accessKey));
-      taskElement.remove();
-    });
-    taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
-    taskList.appendChild(taskElement);
-  });
 
   editTaskForm.reset();
 
   const editTaskPage = document.querySelector(".edit-task");
   editTaskPage.className = "edit-task invisible";
+
+  const navbarControls = document.querySelector(".main-top");
+  for (child of navbarControls.children) {
+    if (child.id === "home") {
+      child.className = "main-controls selected";
+    } else {
+      child.className = "main-controls";
+    }
+  }
+
+  const contentDiv = document.querySelector(".content");
+  for (child of contentDiv.children) {
+    if (!child.classList.contains("home-page")) {
+      child.style.display = "none";
+      child.className = `${child.className.split(" ")[0]} hidden`;
+    } else {
+      child.style.display = "block";
+      child.className = "home-page active";
+    }
+  }
+  /* ========== GET TASKS ========== */
+  TaskHandler.getToDoList();
+  TaskHandler.getTodayToDoList();
+  TaskHandler.getUpcomingToDoList();
+  TaskHandler.getArchiveToDoList();
+  /* ========== UPDATE DISPLAYS ========== */
+  Functions.updateDisplay(TaskHandler.todoList);
+  Functions.updateTodayDisplay(TaskHandler.todayToDoList);
+  Functions.updateUpcomingDisplay(TaskHandler.upcomingToDoList);
+  Functions.updateArchiveDisplay(TaskHandler.archiveToDoList);
 });
+

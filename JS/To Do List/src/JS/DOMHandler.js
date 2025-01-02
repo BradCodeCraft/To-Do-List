@@ -48,6 +48,26 @@ addTaskFormCancelButton.addEventListener("click", () => {
 
   const addTaskPage = document.querySelector(".add-task");
   addTaskPage.className = "add-task invisible";
+
+  const navbarControls = document.querySelector(".main-top");
+  for (child of navbarControls.children) {
+    if (child.id === "home") {
+      child.className = "main-controls selected";
+    } else {
+      child.className = "main-controls";
+    }
+  }
+
+  const contentDiv = document.querySelector(".content");
+  for (child of contentDiv.children) {
+    if (!child.classList.contains("home-page")) {
+      child.style.display = "none";
+      child.className = `${child.className.split(" ")[0]} hidden`;
+    } else {
+      child.style.display = "block";
+      child.className = "home-page active";
+    }
+  }
 });
 
 
@@ -60,3 +80,4 @@ editTaskFormCancelButton.addEventListener("click", () => {
   const editTaskPage = document.querySelector(".edit-task");
   editTaskPage.className = "edit-task invisible";
 });
+

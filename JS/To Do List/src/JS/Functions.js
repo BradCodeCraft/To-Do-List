@@ -1,3 +1,5 @@
+import { TaskHandler } from "./TaskHandler.js";
+
 export const Functions = {
   convertMonth: function(month) {
     switch (Number(month)) {
@@ -49,8 +51,164 @@ export const Functions = {
         return `${day}th`;
     }
   },
-  forceUpdate: function() {
-    const activePageContentList = document.querySelector(".content>.active>main>.content-list");
-    activePageContentList.innerHTML = activePageContentList.innerHTML;
+  updateDisplay: function(todoList) {
+    const taskList = document.querySelector(".content>.active>main>.content-list");
+    taskList.innerHTML = "";
+    todoList.forEach((task) => {
+      const taskElement = document.createElement("div");
+      taskElement.className = "content-list-item-card";
+      taskElement.accessKey = task.id;
+      taskElement.innerHTML = `
+    <h2 class=${task.status.toLowerCase()}>Title: ${task.title}</h2>
+    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
+    <div class="content-list-item-card-buttons">
+      <button class="edit-task-button">Edit</button>
+      <button class="delete-task-button">Delete</button>
+    </div>  
+  `;
+      taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
+        const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
+        const editTaskPage = document.querySelector(".edit-task");
+        editTaskPage.className = "edit-task";
+
+        const editTaskForm = document.querySelector(".edit-task>form");
+        editTaskForm.accessKey = task.id;
+        editTaskForm[0].value = task.title;
+        editTaskForm[1].value = task.description;
+        editTaskForm[2].value = task.project;
+        editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
+        editTaskForm[4].value = task.priority;
+        editTaskForm[5].value = task.status;
+      });
+
+      taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
+        TaskHandler.deleteTask(Number(taskElement.accessKey));
+        taskElement.remove();
+      });
+
+      taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
+
+      taskList.appendChild(taskElement);
+    });
+  },
+  updateTodayDisplay: function(todayToDoList) {
+    const todayTaskList = document.querySelector(".today-page>main>.content-list");
+    todayTaskList.innerHTML = "";
+    todayToDoList.forEach((task) => {
+      const taskElement = document.createElement("div");
+      taskElement.className = "content-list-item-card";
+      taskElement.accessKey = task.id;
+      taskElement.innerHTML = `
+    <h2 class=${task.status.toLowerCase()}>Title: ${task.title}</h2>
+    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
+    <div class="content-list-item-card-buttons">
+      <button class="edit-task-button">Edit</button>
+      <button class="delete-task-button">Delete</button>
+    </div>  
+  `;
+      taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
+        const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
+        const editTaskPage = document.querySelector(".edit-task");
+        editTaskPage.className = "edit-task";
+
+        const editTaskForm = document.querySelector(".edit-task>form");
+        editTaskForm.accessKey = task.id;
+        editTaskForm[0].value = task.title;
+        editTaskForm[1].value = task.description;
+        editTaskForm[2].value = task.project;
+        editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
+        editTaskForm[4].value = task.priority;
+        editTaskForm[5].value = task.status;
+      });
+
+      taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
+        TaskHandler.deleteTask(Number(taskElement.accessKey));
+        taskElement.remove();
+      });
+
+      taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
+
+      todayTaskList.appendChild(taskElement);
+    });
+  },
+  updateUpcomingDisplay: function(upcomingToDoList) {
+    const upcomingTaskList = document.querySelector(".upcoming-page>main>.content-list");
+    upcomingTaskList.innerHTML = "";
+    upcomingToDoList.forEach((task) => {
+      const taskElement = document.createElement("div");
+      taskElement.className = "content-list-item-card";
+      taskElement.accessKey = task.id;
+      taskElement.innerHTML = `
+    <h2 class=${task.status.toLowerCase()}>Title: ${task.title}</h2>
+    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
+    <div class="content-list-item-card-buttons">
+      <button class="edit-task-button">Edit</button>
+      <button class="delete-task-button">Delete</button>
+    </div>  
+  `;
+      taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
+        const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
+        const editTaskPage = document.querySelector(".edit-task");
+        editTaskPage.className = "edit-task";
+
+        const editTaskForm = document.querySelector(".edit-task>form");
+        editTaskForm.accessKey = task.id;
+        editTaskForm[0].value = task.title;
+        editTaskForm[1].value = task.description;
+        editTaskForm[2].value = task.project;
+        editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
+        editTaskForm[4].value = task.priority;
+        editTaskForm[5].value = task.status;
+      });
+
+      taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
+        TaskHandler.deleteTask(Number(taskElement.accessKey));
+        taskElement.remove();
+      });
+
+      taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
+
+      upcomingTaskList.appendChild(taskElement);
+    });
+  },
+  updateArchiveDisplay: function(archiveToDoList) {
+    const archiveTaskList = document.querySelector(".archive-page>main>.content-list");
+    archiveTaskList.innerHTML = "";
+    archiveToDoList.forEach((task) => {
+      const taskElement = document.createElement("div");
+      taskElement.className = "content-list-item-card";
+      taskElement.accessKey = task.id;
+      taskElement.innerHTML = `
+    <h2 class=${task.status.toLowerCase()}>Title: ${task.title}</h2>
+    <p>Due: ${Functions.convertMonth(task.dueDate.month)} ${Functions.convertDay(task.dueDate.day)}</p>
+    <div class="content-list-item-card-buttons">
+      <button class="edit-task-button">Edit</button>
+      <button class="delete-task-button">Delete</button>
+    </div>  
+  `;
+      taskElement.querySelector(".edit-task-button").addEventListener("click", (e) => {
+        const task = TaskHandler.todoList.find((task) => task.id === Number(taskElement.accessKey));
+        const editTaskPage = document.querySelector(".edit-task");
+        editTaskPage.className = "edit-task";
+
+        const editTaskForm = document.querySelector(".edit-task>form");
+        editTaskForm.accessKey = task.id;
+        editTaskForm[0].value = task.title;
+        editTaskForm[1].value = task.description;
+        editTaskForm[2].value = task.project;
+        editTaskForm[3].value = `${task.dueDate.year}-${task.dueDate.month}-${task.dueDate.day}`;
+        editTaskForm[4].value = task.priority;
+        editTaskForm[5].value = task.status;
+      });
+
+      taskElement.querySelector(".delete-task-button").addEventListener("click", (e) => {
+        TaskHandler.deleteTask(Number(taskElement.accessKey));
+        taskElement.remove();
+      });
+
+      taskElement.style.borderLeft = `3px solid rgb(var(--color-priority-${Number(task.priority)}))`
+
+      archiveTaskList.appendChild(taskElement);
+    });
   }
 }

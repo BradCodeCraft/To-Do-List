@@ -1,0 +1,83 @@
+@import "./master.css";
+
+.add-task {
+  /* NOTE: Change this */
+  visibility: hidden;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.add-task>form {
+  padding: 20px 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 50px);
+  gap: 20px;
+
+  width: 500px;
+  height: 400px;
+
+  background-color: rgb(var(--color-secondary));
+  border-radius: 20px;
+
+  box-shadow: 0 0 10px 0 rgba(var(--color-secondary), .5);
+}
+
+.add-task>form>h1 {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.buttons {
+  width: 100%;
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-task-button,
+.cancel-task-button {
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 20px;
+
+  color: rgb(var(--color-text-primary));
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.add-task-button:active,
+.cancel-task-button:active {
+  transform: scale(0.9);
+}
+
+.add-task-button {
+  background-color: rgba(var(--color-button-add), 0.5);
+}
+
+
+.add-task-button:hover {
+  box-shadow: 0 0 5px 0 rgba(var(--color-button-add), 0.5);
+}
+
+.cancel-task-button {
+  background-color: rgba(var(--color-button-cancel), 0.75);
+}
+
+.cancel-task-button:hover {
+  box-shadow: 0 0 5px 0 rgba(var(--color-button-cancel), 0.5);
+}

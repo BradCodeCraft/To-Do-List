@@ -21,23 +21,23 @@
       <main>
         <hr>
         <div class="main-top">
-          <div class="main-controls selected">
+          <div id="home" class="main-controls selected">
             <img src="assets/home.svg" alt="Home" width="25" height="25" class="icon">
             <h2>Home</h2>
           </div>
-          <div class="main-controls">
+          <div id="add-task" class="main-controls">
             <img src="assets/plus-circle.svg" alt="Add Task" width="25" height="25" class="icon">
             <h2>Add Task</h2>
           </div>
-          <div class="main-controls">
+          <div id="today" class="main-controls">
             <img src="assets/calendar-today.svg" alt="Today" width="25" height="25" class="icon">
             <h2>Today</h2>
           </div>
-          <div class="main-controls">
+          <div id="upcoming" class="main-controls">
             <img src="assets/calendar-month.svg" alt="Upcoming" width="25" height="25" class="icon">
             <h2>Upcoming</h2>
           </div>
-          <div class="main-controls">
+          <div id="archive" class="main-controls">
             <img src="assets/archive.svg" alt="Archive" width="25" height="25" class="icon">
             <h2>Archive</h2>
           </div>
@@ -61,13 +61,14 @@
     </nav>
 
     <div class="content">
-      <div class="home-page hidden">
+      <div class="home-page active">
         <header>
           <h1>Welcome</h1>
         </header>
 
         <main class="content-main">
           <div class="content-list">
+            <!--
             <div class="content-list-item-card">
               <input type="checkbox" class="content-list-item-card-checkbox">
               <h2>Title: Task 1</h2>
@@ -144,11 +145,12 @@
                 <button class="delete-task-button">Delete</button>
               </div>
             </div>
+            -->
           </div>
         </main>
       </div>
 
-      <div class="today-page">
+      <div class="today-page hidden">
         <header>
           <h1>Dued Today</h1>
         </header>
@@ -179,6 +181,67 @@
           </div>
       </div>
 
+      <div class="upcoming-page hidden">
+        <header>
+          <h1>Upcoming</h1>
+        </header>
+
+        <main class="content-main">
+          <div class="content-list">
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="archive-page hidden">
+        <header>
+          <h1>Archive</h1>
+        </header>
+
+        <main class="content-main">
+          <div class="content-list">
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+
+            <div class="content-list-item-card">
+              <input type="checkbox" class="content-list-item-card-checkbox">
+              <h2>Title: Task 1</h2>
+              <p>Due Date: Jan 25th</p>
+              <p>Priority: 1</p>
+              <div class="content-list-item-card-buttons">
+                <button class="edit-task-button">Edit</button>
+                <button class="delete-task-button">Delete</button>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
     <div class="add-task invisible">
       <form action="">
@@ -187,15 +250,19 @@
         <label for="taskTitle">
           <h3>Title:</h3>
         </label>
-        <input type="text" id="taskTitle" name="taskTitle" placeholder="Enter task title">
+        <input type="text" id="taskTitle" name="taskTitle" placeholder="Enter task title" required>
         <label for="taskDescription">
           <h3>Description</h3>
         </label>
         <input type="text" id="taskDescription" name="taskDescription" placeholder="Enter task description">
+        <label for="taskProject">
+          <h3>Project:</h3>
+        </label>
+        <input type="text" id="taskProject" name="taskProject" placeholder="Enter project name">
         <label for="taskDueDate">
           <h3>Due Date</h3>
         </label>
-        <input type="date" id="taskDueDate" name="taskDueDate">
+        <input type="date" id="taskDueDate" name="taskDueDate" required>
         <label for="taskPriority">
           <h3>Priority</h3>
         </label>
@@ -209,6 +276,42 @@
         <div class="buttons">
           <button type="button" class="cancel-task-button">Cancel</button>
           <button type="submit" class="add-task-button">Add Task</button>
+        </div>
+      </form>
+    </div>
+    <div class="edit-task invisible">
+      <form action="">
+        <h1>Update a task</h1>
+
+        <label for="taskTitle">
+          <h3>Title:</h3>
+        </label>
+        <input type="text" id="taskTitle" name="taskTitle" placeholder="Enter task title" required>
+        <label for="taskDescription">
+          <h3>Description</h3>
+        </label>
+        <input type="text" id="taskDescription" name="taskDescription" placeholder="Enter task description">
+        <label for="taskProject">
+          <h3>Project:</h3>
+        </label>
+        <input type="text" id="taskProject" name="taskProject" placeholder="Enter project name">
+        <label for="taskDueDate">
+          <h3>Due Date</h3>
+        </label>
+        <input type="date" id="taskDueDate" name="taskDueDate" required>
+        <label for="taskPriority">
+          <h3>Priority</h3>
+        </label>
+        <select name="taskPriority" id="taskPriority">
+          <option value=1>1</option>
+          <option value=2>2</option>
+          <option value=3>3</option>
+          <option value=4>4</option>
+          <option value=5>5</option>
+        </select>
+        <div class="buttons">
+          <button type="button" class="cancel-task-button">Cancel</button>
+          <button type="submit" class="add-task-button">Update</button>
         </div>
       </form>
     </div>

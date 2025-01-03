@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: 100px 850px;
+  place-items: center;
+
+  font-family: "Poppins", sans-serif;
+  color: #FFFFFF;
+
+  background-color: #181818;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+}
+
+header {
+  width: 40vw;
+  min-width: 800px;
+  height: 100px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-family: "Monsieur La Doulaise", sans-serif;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+nav button {
+  padding: 2.5px 15px;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  border-radius: 50px;
+
+  background-color: #FD8200;
+  color: #FFFFFF;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+nav button:active {
+  transform: scale(0.9);
+}
+
+/* NOTE: .content */
+.active-button {
+  background-color: transparent;
+  color: #FD8200;
+
+  border-radius: 0;
+  border-bottom: 2px solid #FD8200;
+}
+
+/* NOTE: .home */
+.home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  gap: 20px;
+
+  width: 50vw;
+  min-width: 500px;
+}
+
+.home h1 {
+  font-size: 3rem;
+}
+
+.home-image {
+  width: 500px;
+  height: 500px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* NOTE: .menu */
+.menu {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  width: 50vw;
+  min-width: 500px;
+  max-width: 750px;
+  padding: 20px 10px;
+  margin: 20px 0;
+
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  background-color: #1E1E1E;
+}
+
+.menu h1 {
+  font-size: 2.5rem;
+}
+
+.appetizers,
+.main-course,
+.beverages {
+  width: 100%;
+}
+
+.image-container-left,
+.image-container-right {
+  width: 100%;
+
+  display: grid;
+
+  padding: 10px 10px;
+
+  background-color: #FD8200;
+}
+
+.image-container-right {
+  place-items: start;
+  border-radius: 200px 0 0 200px;
+}
+
+.image-container-left {
+  place-items: end;
+  border-radius: 0 200px 200px 0;
+}
+
+.menu img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+/* NOTE: .about */
+.about {
+  display: grid;
+  place-items: center;
+  gap: 20px;
+
+  min-width: 500px;
+  max-width: 850px;
+}
+
+#experience-us,
+#our-story {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#experience-us {
+  height: 300px;
+}
+
+#experience-us-background {
+  position: absolute;
+  z-index: -1;
+
+  min-height: 300px;
+  width: 850px;
+
+
+  filter: brightness(0.5) blur(2.5px);
+
+  border-radius: 50px;
+
+  background-image: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+}
+
+#experience-us p,
+#our-story p {
+  width: 50%;
+}
+
+#our-story-subtext {
+  color: #FD8200;
+  text-align: left;
+}
+
+#contact-us {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  gap: 20px;
+
+  min-width: 500px;
+  max-width: 850px;
+}
+
+#contact-us h2 {
+  grid-column: 1 / -1;
+}
+
+#contact-us p {
+  background-color: #FD8200;
+
+  height: 50px;
+  width: 250px;
+
+  padding: 10px;
+
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+}

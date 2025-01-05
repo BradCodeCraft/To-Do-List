@@ -43,7 +43,7 @@ export const TaskHandler = {
   },
   updateTask: function(task) {
     this.todoList[task.id - 1] = task;
-    console.log(this.todoList);
+
     this.setToDoList();
     this.getToDoList();
   },
@@ -79,6 +79,19 @@ export const TaskHandler = {
     });
   },
   getArchiveToDoList: function() {
-    this.archiveToDoList = this.todoList.filter((task) => task.status === "Completed");
+    const today = new Date();
+    const todayDay = today.getDate().toString().length === 1 ?
+      "0" + today.getDate().toString() :
+      today.getDate();
+    const todayMonth = (today.getMonth() + 1).toString().length === 1 ?
+      "0" + (today.getMonth() + 1) :
+      (today.getMonth() + 1).toString();
+
+    this.archiveToDoList = this.todoList.filter((task) => {
+      return task.status === "Completed" ||
+        task.dueDate.year < today.getFullYear().toString() ||
+        task.dueDate.month < todayMonth ||
+        task.dueDate.day < todayDay;
+    });
   },
 }

@@ -96,6 +96,12 @@ editTaskForm.addEventListener("submit", (e) => {
 
   editTaskForm.reset();
 
+  /* ========== GET TASKS ========== */
+  TaskHandler.getToDoList();
+  TaskHandler.getTodayToDoList();
+  TaskHandler.getUpcomingToDoList();
+  TaskHandler.getArchiveToDoList();
+
   const editTaskPage = document.querySelector(".edit-task");
   editTaskPage.className = "edit-task invisible";
 
@@ -118,11 +124,7 @@ editTaskForm.addEventListener("submit", (e) => {
       child.className = "home-page active";
     }
   }
-  /* ========== GET TASKS ========== */
-  TaskHandler.getToDoList();
-  TaskHandler.getTodayToDoList();
-  TaskHandler.getUpcomingToDoList();
-  TaskHandler.getArchiveToDoList();
+
   /* ========== UPDATE DISPLAYS ========== */
   Functions.updateDisplay(TaskHandler.todoList);
   Functions.updateTodayDisplay(TaskHandler.todayToDoList);

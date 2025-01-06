@@ -101,7 +101,7 @@ nav {
 
 nav>header {
   display: grid;
-  grid-template-columns: 50px 1fr 25px 25px;
+  grid-template-columns: 75px 1fr;
   align-items: center;
 }
 
@@ -115,7 +115,7 @@ nav>header {
 }
 
 .nav-header-logo:hover {
-  cursor: pointer;
+  cursor: default;
   box-shadow: 0 0 5px 2px rgba(var(--color-tertiary), 0.5);
 }
 
